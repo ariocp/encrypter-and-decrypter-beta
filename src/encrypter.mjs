@@ -1,7 +1,7 @@
 export class Encrypter {
     constructor() {
+        this.salt = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         this.data = "ariocp";
-        this.salt = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%&*()-_+=[]{}|/?<>.:;'\"`~^0123456789";
     }
 
     encrypt() {
@@ -21,11 +21,11 @@ export class Encrypter {
             }
         }
 
-        while (encryptedData.length < 14) {
+        while (encryptedData.length < 16) {
             const randomIndex = Math.floor(Math.random() * saltLength);
             encryptedData += this.salt[randomIndex];
         }
-
-        return "x-" + encryptedData.slice(0, 14);
+        
+        return encryptedData.slice(0, 16);
     }
 }
